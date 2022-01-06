@@ -1,0 +1,7 @@
+{% extends 'blogs/base.html' %}
+{% block content %}
+<h1>Index</h1>
+<a href="{% url 'blog:blogspages'  %}">Blogs</a><br>
+<a href="{% url 'account:register' %}">Register</a><br>
+<a href="{% url 'account:login' %}">Login</a>
+{% endblock content %}

@@ -1,0 +1,9 @@
+*.pyc
+*.cfg
+*.toml
+*.gz
+
+polls/__pycache__/
+polls/dist/
+polls/django_polls.egg-info/
+polls/migrations/

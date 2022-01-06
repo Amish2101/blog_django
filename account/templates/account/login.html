@@ -1,0 +1,9 @@
+{% load crispy_forms_tags %}      
+<form  method="post">
+    {% csrf_token %}
+    {{login_form|crispy}}
+    <input type="submit" value="login" >
+</form>
+
+<a href="{% url 'account:register' %}">Register</a><br>
+<a href="{% url 'blog:home' %}">Back</a>

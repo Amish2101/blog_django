@@ -1,0 +1,3 @@
+{% for u in user %}
+<a href="{% url 'blog:bloggerdetails' u.id %}">{{ u }}</a> <br>
+{% endfor %}

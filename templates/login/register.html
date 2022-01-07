@@ -1,9 +1,10 @@
-{% load crispy_forms_tags %}      
+
+{% load crispy_forms_tags %}  
 <form  method="post">
     {% csrf_token %}
     {{form|crispy}}
     <input type="submit" value="register" >
-</form>
+</form> 
 
 <a href="{% url 'account:login' %}">Already account</a>
 <a href="{% url 'blog:home' %}">Back</a>

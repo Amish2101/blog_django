@@ -1,1 +1,7 @@
-{{ user }}
+{{ users }}
+{% for i in user %}
+{{ i.firstname }}
+{{ i.lastname }}
+{{ i.email }}
+{{ i }}
+{% endfor %}

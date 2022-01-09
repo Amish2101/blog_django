@@ -1,26 +1,14 @@
-
-<h1>Blogs List</h1>
-{% for x in data %}
-<div>
-    <a href="{% url 'blog:details' x.id %}">{{x.btitle}}</a>
-    <a href="{% url 'blog:bloggerdetails' request.user.id%}">{{ x.bautor }}</a> {{x.bdate}}
-</div>
+{% extends 'blogs/base.html' %}
+{% block content %}
+<h1>All Blogs List</h1>
+{% if blogs_list %}
+{% for blog in blogs_list %}
+    <a href="{{ blog.get_absolute_url }}">{{blog.btitle}}</a> {{blog.bdate}} <a href="{% url 'blog:bloggerdetails' blog.user.pk%}">{{ x.user }}</a>
 {% endfor %}
-
+{% else %}
+<p>No blogs</p>
+{% endif %}
 <a href="{% url 'blog:home' %}" >Back to index</a>
 
-{% if is_paginated %}
-<div>
-    <span>
-        {% if page_obj.has_previous %}
-            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-        <span>
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-        {% if page_obj.has_next %}
-            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-        {% endif %}
-    </span>
-</div>
-{% endif %}
+
+{% endblock %}

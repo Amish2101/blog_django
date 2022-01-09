@@ -1,4 +1,3 @@
-from typing import ParamSpecKwargs
 from django.contrib.auth.models import User
 from django.http import request
 from django.shortcuts import render, get_object_or_404
@@ -20,7 +19,7 @@ def homepage(request):
 class blogspage(generic.ListView):
     model = blogs
     paginate_by = 5
-    # template_name = 'blogs/blogs.html'
+    template_name = 'blogs/blogs.html'
     # context_object_name = 'data'
 
     # def get_queryset(self):
@@ -28,7 +27,7 @@ class blogspage(generic.ListView):
 
 class detailspage(generic.DetailView):
     model = blogs
-    # template_name = 'blogs/details.html'
+    template_name = 'blogs/details.html'
     # context_object_name = 'data'
 
     # def get_queryset(self):
@@ -37,7 +36,7 @@ class detailspage(generic.DetailView):
 class blogger(generic.ListView):
     model = author
     paginate_by = 5
-    # template_name = 'blogs/blogger.html'
+    template_name = 'blogs/blogger.html'
     # context_object_name = 'user'
 
     # def get_queryset(self):
@@ -56,7 +55,7 @@ class bloggerdetails(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(bloggerdetails, self).get_context_data(**kwargs)
-        context["user"] = get_object_or_404(author, pk = self.kwargs['pk']) 
+        context["blogger"] = get_object_or_404(author, pk = self.kwargs['pk']) 
         return context
     
     
@@ -72,6 +71,7 @@ class bloggerdetails(generic.ListView):
 
 class blogcomment(LoginRequiredMixin, CreateView):
     model = comment
+    template_name = 'blogs/comment.html'
     fields = ['comment',]
 
     def get_context_data(self, **kwargs):

@@ -1,3 +1,17 @@
-{% for u in user %}
+{% extends 'blogs/base.html' %}
+{% comment %} {% for u in user %}
 <a href="{% url 'blog:bloggerdetails' u.id %}">{{ u }}</a> <br>
+{% endfor %} {% endcomment %}
+
+
+
+{% block content %}
+<h1>All Author</h1>
+{% if author_list %}
+{% for author in author_list  %}
+<a href="{% url 'blog:bloggerdetails' author.pk %}">{{ author }}</a>
 {% endfor %}
+{% else %}
+<p>no bloggers</p>
+{% endif %}
+{% endblock  %}

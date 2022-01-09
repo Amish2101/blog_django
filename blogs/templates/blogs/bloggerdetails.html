@@ -1,7 +1,16 @@
-{{ users }}
-{% for i in user %}
-{{ i.firstname }}
-{{ i.lastname }}
-{{ i.email }}
-{{ i }}
+{% extends 'blogs/base.html' %}
+{% block content %}
+<h1>Blogger : {{blogger}}</h1>
+<h5>bio</h5>
+<p>{{blogger.bio}}</p>
+
+{% if blogs_list %}
+<h2>Blogs List</h2>
+
+{% for blog in blogs_list  %}
+<a href="{{blog.get_absolute_url}}">{{blog.btitle}}</a>
 {% endfor %}
+{% else %}
+<p>no post any blog</p>
+{% endif %}
+{% endblock  %}

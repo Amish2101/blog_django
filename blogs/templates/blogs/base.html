@@ -1,31 +1,48 @@
 
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Blogs</title>
 </head>
 <body>
+    <div id="sidebar">
     {% block sidebar %}
     <ul>
         <li><a href="{% url 'blog:home' %}">Home</a></li>
         <li><a href="{% url 'blog:blogspages' %}">All blogs</a></li>
         <li><a href="{% url 'blog:blogger' %}">All authors</a></li>
-      </ul>
-      {% if request.user.is_authenticated %}
-      <li>User: {{ user.get_username }}</li>
+      {% if user.is_authenticated %}
+      User: {{ user.get_username }}
       <li><a href="{% url 'logout'%}?next={{request.path}}" >Logout</a></li>
     {% else %}
       <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
     {% endif %}
-   </ul>
     {% endblock %}
+    </div>
+    <div id="morespace"></div>
     <div>
     {% block content %}{% endblock %}
-
+    {% if is_paginated %}
+    <div>
+    <span>
+        {% if page_obj.has_previous %}
+            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+        <span>
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+        {% if page_obj.has_next %}
+            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+    </div>
+    {% endif %}
     </div>
 
 

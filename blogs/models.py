@@ -10,8 +10,8 @@ class author(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
     bio = models.TextField(max_length=500)
 
-    # def get_absolute_url(self):
-    #     return reverse('bloggerdetails', args=[str(self.id)])
+    def get_absolute_url(self):
+        return reverse('bloggerdetails', args=[str(self.id)])
     
     def __str__(self):
         return self.user.username
@@ -30,8 +30,8 @@ class blogs(models.Model):
     class Meta:
         ordering = ['-bdate']
 
-    # def get_absolute_url(self):
-    #     return reverse('bloggerdetails', args=[str(self.id)])
+    def get_absolute_url(self):
+        return reverse('details', args=[str(self.id)])
 
 class comment(models.Model):
     comments = models.TextField(max_length=500, null= True)

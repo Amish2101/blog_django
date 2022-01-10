@@ -3,12 +3,11 @@
 <h1>All Blogs List</h1>
 {% if blogs_list %}
 {% for blog in blogs_list %}
-    <a href="{{ blog.get_absolute_url }}">{{blog.btitle}}</a> {{blog.bdate}} <a href="{% url 'blog:bloggerdetails' blog.user.pk%}">{{ x.user }}</a>
+    <a href="{% url 'blog:details' blog.pk%}">{{blog.btitle}}</a> {{blog.bdate}} <a href="{% url 'blog:bloggerdetails' blog.user.pk%}">{{ blog.user }}</a><br>
 {% endfor %}
 {% else %}
 <p>No blogs</p>
 {% endif %}
-<a href="{% url 'blog:home' %}" >Back to index</a>
 
 
 {% endblock %}

@@ -1,6 +1,5 @@
 {% extends 'blogs/base.html' %}
 {% block content %}
-<p>post comment :- <a href="{% url 'details' blogs.pk %}">{{blogs.btitle}}</a></p>
 <form action="" method="post">
     {% csrf_token %}
     {{  form }}

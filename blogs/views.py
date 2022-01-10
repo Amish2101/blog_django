@@ -20,27 +20,19 @@ class blogspage(generic.ListView):
     model = blogs
     paginate_by = 5
     template_name = 'blogs/blogs.html'
-    # context_object_name = 'data'
 
-    # def get_queryset(self):
-    #     return blogs.objects.filter(bdate__lte=timezone.now())
+    def get_queryset(self):
+        return blogs.objects.filter(bdate__lte=timezone.now())
 
 class detailspage(generic.DetailView):
     model = blogs
     template_name = 'blogs/details.html'
-    # context_object_name = 'data'
-
-    # def get_queryset(self):
-    #     return blogs.objects.filter(bautor = id)
+    
 
 class blogger(generic.ListView):
     model = author
     paginate_by = 5
     template_name = 'blogs/blogger.html'
-    # context_object_name = 'user'
-
-    # def get_queryset(self):
-    #     return User.objects.all()
 
 
 class bloggerdetails(generic.ListView):
@@ -57,22 +49,14 @@ class bloggerdetails(generic.ListView):
         context = super(bloggerdetails, self).get_context_data(**kwargs)
         context["blogger"] = get_object_or_404(author, pk = self.kwargs['pk']) 
         return context
-    
-    
-
-# def bloggerdetails(request, pk):
-#     print("this is a pk key value" ,pk)
-#     users = get_object_or_404(User,id=pk)
-#     print(users)
-#     user = blogs.objects.filter(bautor = pk)
-#     print(user)
-#     return render(request, 'blogs/bloggerdetails.html', {'user':user, 'users':users})
 
 
 class blogcomment(LoginRequiredMixin, CreateView):
     model = comment
     template_name = 'blogs/comment.html'
-    fields = ['comment',]
+    fields = ['comments',]
+    
+    
 
     def get_context_data(self, **kwargs):
         context = super(blogcomment, self).get_context_data(**kwargs)
@@ -85,4 +69,4 @@ class blogcomment(LoginRequiredMixin, CreateView):
         return super(blogcomment, self).form_valid(form)
     
     def get_success_url(self):
-        return reverse('details', kwargs={'pk': self.kwargs['pk'],})
+        return reverse('blog:details', kwargs={'pk': self.kwargs['pk'],})

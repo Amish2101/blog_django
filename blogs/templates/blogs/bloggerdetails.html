@@ -8,7 +8,7 @@
 <h2>Blogs List</h2>
 
 {% for blog in blogs_list  %}
-<a href="{{blog.get_absolute_url}}">{{blog.btitle}}</a>
+<a href="{% url 'blog:details' blog.pk %}">{{blog.btitle}}</a> {{blog.bdate}}<br>
 {% endfor %}
 {% else %}
 <p>no post any blog</p>

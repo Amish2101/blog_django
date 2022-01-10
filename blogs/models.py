@@ -34,16 +34,16 @@ class blogs(models.Model):
         return reverse('details', args=[str(self.id)])
 
 class comment(models.Model):
-    comments = models.TextField(max_length=500, null= True)
+    comments = models.TextField(max_length=500)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    # post_date = models.DateTimeField()
-    blog = models.ForeignKey(blogs, on_delete=models.CASCADE, default=True )
+    cdate = models.DateTimeField(default=timezone.now())
+    blog = models.ForeignKey(blogs, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.comments
         
-    # class Meta:
-    #     ordering = ["-post_date"]
+    class Meta:
+        ordering = ["-cdate"]
 
     def __str__(self):
         title_limit = 75

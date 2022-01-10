@@ -9,7 +9,10 @@
 
 {% for comment in blogs.comment_set.all  %}
 <hr>
-<p>{{comment.user}} {{comment.comments}} <a href=""></a> </p>
+<div>
+<p>{{comment.user}} ({{comment.cdate}})</p>
+<p>{{comment.comments}}</p>
+</div>
 {% endfor %}
 <hr>
 {% if user.is_authenticated %}

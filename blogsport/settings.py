@@ -36,10 +36,7 @@ SECRET_KEY = 'django-insecure-*94y2h3jlc)ib&arjk!f*84a3e75_^*ok*3ko$(6m32unq88lf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False   
 
-ALLOWED_HOSTS = ['https://blogs-django.herokuapp.com/']
-SECRET_KEY = os.environ.get('SECRET_KEY')
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+ALLOWED_HOSTS = ['https://blogs-django.herokuapp.com/',]
 
 
 # Application definition
@@ -138,7 +135,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
